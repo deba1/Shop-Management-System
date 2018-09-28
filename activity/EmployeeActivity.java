@@ -10,8 +10,8 @@ import attr.*;
 public class EmployeeActivity extends JFrame implements ActionListener {
 	private JPanel panel;
 	private Employee employee;
-	private JButton buttonLogout, buttonProfile, buttonViewProduct, buttonAddProduct;
-	private JButton buttonViewCustomer, buttonViewEmployee, buttonAddEmployee;
+	private JButton buttonLogout, buttonProfile, buttonViewProduct;
+	private JButton buttonViewCustomer, buttonViewEmployee;
 	private JLabel title, header;
 	public EmployeeActivity(String userId) {
 		super("Dashboard - Employee");
@@ -19,6 +19,7 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 		this.setSize(Theme.GUI_WIDTH, Theme.GUI_HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		
 		employee = new Employee(userId);
 		employee.fetch();
@@ -28,7 +29,7 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 		panel.setBackground(Theme.BACKGROUND_PANEL);
 		
 		title = new JLabel("Welcome, "+userId);
-		title.setBounds(30, 40, userId.length()*30+250,75);
+		title.setBounds(30, 40, userId.length()*30+220,75);
 		title.setOpaque(true);
 		title.setBorder(new EmptyBorder(0,20,0,0));
 		title.setFont(Theme.FONT_TITLE);
@@ -59,16 +60,8 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 		buttonViewProduct.addActionListener(this);
 		panel.add(buttonViewProduct);
 		
-		buttonAddProduct = new JButton("Add Product");
-		buttonAddProduct.setBounds(60, 190, 200, 30);
-		buttonAddProduct.setFont(Theme.FONT_BUTTON);
-		buttonAddProduct.setBackground(Theme.BACKGROUND_BUTTON_PRIMARY);
-		buttonAddProduct.setForeground(Theme.COLOR_BUTTON_PRIMARY);
-		buttonAddProduct.addActionListener(this);
-		panel.add(buttonAddProduct);
-		
-		buttonViewCustomer = new JButton("View Customer Info");
-		buttonViewCustomer.setBounds(60, 220, 200, 30);
+		buttonViewCustomer = new JButton("View Customer");
+		buttonViewCustomer.setBounds(60, 190, 200, 30);
 		buttonViewCustomer.setFont(Theme.FONT_BUTTON);
 		buttonViewCustomer.setBackground(Theme.BACKGROUND_BUTTON_PRIMARY);
 		buttonViewCustomer.setForeground(Theme.COLOR_BUTTON_PRIMARY);
@@ -76,21 +69,13 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 		panel.add(buttonViewCustomer);
 		
 		if (employee.getRole().equals("Manager")) {
-			buttonViewEmployee = new JButton("View Employee Info");
-			buttonViewEmployee.setBounds(60, 250, 200, 30);
+			buttonViewEmployee = new JButton("View Employee");
+			buttonViewEmployee.setBounds(60, 220, 200, 30);
 			buttonViewEmployee.setFont(Theme.FONT_BUTTON);
 			buttonViewEmployee.setBackground(Theme.BACKGROUND_BUTTON_PRIMARY);
 			buttonViewEmployee.setForeground(Theme.COLOR_BUTTON_PRIMARY);
 			buttonViewEmployee.addActionListener(this);
 			panel.add(buttonViewEmployee);
-			
-			buttonAddEmployee = new JButton("View Employee Info");
-			buttonAddEmployee.setBounds(60, 280, 200, 30);
-			buttonAddEmployee.setFont(Theme.FONT_BUTTON);
-			buttonAddEmployee.setBackground(Theme.BACKGROUND_BUTTON_PRIMARY);
-			buttonAddEmployee.setForeground(Theme.COLOR_BUTTON_PRIMARY);
-			buttonAddEmployee.addActionListener(this);
-			panel.add(buttonAddEmployee);
 		}
 		
 		header = new JLabel();
@@ -113,23 +98,15 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 		}
 		else if (ae.getSource().equals(buttonViewProduct)) {
 			this.setVisible(false);
-			new LoginActivity().setVisible(true);
-		}
-		else if (ae.getSource().equals(buttonAddProduct)) {
-			this.setVisible(false);
-			new LoginActivity().setVisible(true);
+			new ViewProductActivity(this, employee).setVisible(true);
 		}
 		else if (ae.getSource().equals(buttonViewCustomer)) {
 			this.setVisible(false);
-			new LoginActivity().setVisible(true);
+			new ViewCustomerActivity(this, employee).setVisible(true);
 		}
 		else if (ae.getSource().equals(buttonViewEmployee)) {
 			this.setVisible(false);
-			new LoginActivity().setVisible(true);
-		}
-		else if (ae.getSource().equals(buttonAddEmployee)) {
-			this.setVisible(false);
-			new LoginActivity().setVisible(true);
+			new ViewEmployeeActivity(this, employee).setVisible(true);
 		}
 		else {}
 	}

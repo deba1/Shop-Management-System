@@ -12,13 +12,15 @@ public class SignupActivity extends JFrame implements ActionListener {
 	private JPanel panel;
 	private JButton buttonExit, buttonSubmit, buttonBack;
 	private JLabel title, header, usernameLabel, passwordLabel, nameLabel, phoneLabel, addressLabel;
-	private JTextField usernameTF, passwordF, nameTF, phoneTF1, phoneTF2, addressTF;
+	private JTextField usernameTF, nameTF, phoneTF1, phoneTF2, addressTF;
+	private JPasswordField passwordF;
 	public SignupActivity() {
 		super("Sign up");
 		
 		this.setSize(Theme.GUI_WIDTH, Theme.GUI_HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -78,7 +80,7 @@ public class SignupActivity extends JFrame implements ActionListener {
 		usernameTF.setFont(Theme.FONT_INPUT);
 		panel.add(usernameTF);
 		
-		passwordF = new JTextField();
+		passwordF = new JPasswordField();
 		passwordF.setBounds(180, 190, 220, 30);
 		passwordF.setFont(Theme.FONT_INPUT);
 		panel.add(passwordF);
@@ -93,6 +95,7 @@ public class SignupActivity extends JFrame implements ActionListener {
 		phoneTF1.setForeground(Theme.COLOR_BUTTON_PRIMARY);
 		phoneTF1.setEnabled(false);
 		phoneTF1.setFont(Theme.FONT_INPUT);
+		phoneTF1.setDisabledTextColor(Color.BLACK);
 		panel.add(phoneTF1);
 		
 		phoneTF2 = new JTextField();
@@ -131,7 +134,7 @@ public class SignupActivity extends JFrame implements ActionListener {
 		}
 		else if (ae.getSource().equals(buttonSubmit)) {
 			try {
-				Customer c = new Customer(usernameTF.getText());
+				Customer c = new Customer(usernameTF.getText().trim());
 				c.setPassword(passwordF.getText());
 				c.setCustomerName(nameTF.getText());
 				c.setPhoneNumber(Integer.parseInt(phoneTF2.getText()));

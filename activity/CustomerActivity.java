@@ -19,6 +19,7 @@ public class CustomerActivity extends JFrame implements ActionListener {
 		this.setSize(Theme.GUI_WIDTH, Theme.GUI_HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -28,7 +29,7 @@ public class CustomerActivity extends JFrame implements ActionListener {
 		customer.fetch();
 		
 		title = new JLabel("Welcome, "+userId);
-		title.setBounds(30, 40, userId.length()*30+260,75);
+		title.setBounds(30, 40, userId.length()*30+220,75);
 		title.setOpaque(true);
 		title.setBorder(new EmptyBorder(0,20,0,0));
 		title.setFont(Theme.FONT_TITLE);
@@ -59,8 +60,8 @@ public class CustomerActivity extends JFrame implements ActionListener {
 		buttonViewProduct.addActionListener(this);
 		panel.add(buttonViewProduct);
 		
-		buttonMyProduct = new JButton("My Products");
-		buttonMyProduct.setBounds(60, 160, 200, 30);
+		buttonMyProduct = new JButton("Purchase History");
+		buttonMyProduct.setBounds(60, 190, 200, 30);
 		buttonMyProduct.setFont(Theme.FONT_BUTTON);
 		buttonMyProduct.setBackground(Theme.BACKGROUND_BUTTON_PRIMARY);
 		buttonMyProduct.setForeground(Theme.COLOR_BUTTON_PRIMARY);
@@ -87,11 +88,11 @@ public class CustomerActivity extends JFrame implements ActionListener {
 		}
 		else if (ae.getSource().equals(buttonViewProduct)) {
 			this.setVisible(false);
-			new LoginActivity().setVisible(true);
+			new ViewProductActivity(this, customer).setVisible(true);
 		}
 		else if (ae.getSource().equals(buttonMyProduct)) {
 			this.setVisible(false);
-			new LoginActivity().setVisible(true);
+			new MyProductActivity(this, customer).setVisible(true);
 		}
 		else {}
 	}

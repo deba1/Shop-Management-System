@@ -19,13 +19,14 @@ public class LoginActivity extends JFrame implements ActionListener {
 		this.setSize(Theme.GUI_WIDTH, Theme.GUI_HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Theme.BACKGROUND_PANEL);
 		
 		title = new JLabel("Shop Management System");
-		title.setBounds(30, 40, 555,75);
+		title.setBounds(30, 40, 555, 75);
 		title.setOpaque(true);
 		title.setBorder(new EmptyBorder(0,20,0,0));
 		title.setFont(Theme.FONT_TITLE);
