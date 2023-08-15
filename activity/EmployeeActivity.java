@@ -88,26 +88,25 @@ public class EmployeeActivity extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent ae) {
-		if (ae.getSource().equals(buttonProfile)) {
-			this.setVisible(false);
+		if (isThisButtonEqualTo(ae,buttonProfile)) {
 			new MyProfileActivity(this, employee).setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonLogout)) {
-			this.setVisible(false);
+		if (isThisButtonEqualTo(ae, buttonLogout)) {
 			new LoginActivity().setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonViewProduct)) {
-			this.setVisible(false);
+		if (isThisButtonEqualTo(ae,buttonViewProduct)) {
 			new ViewProductActivity(this, employee).setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonViewCustomer)) {
-			this.setVisible(false);
+		if (isThisButtonEqualTo(ae,buttonViewCustomer)) {
 			new ViewCustomerActivity(this, employee).setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonViewEmployee)) {
-			this.setVisible(false);
+		if (isThisButtonEqualTo(ae,buttonViewEmployee)) {
 			new ViewEmployeeActivity(this, employee).setVisible(true);
 		}
-		else {}
+		this.setVisible(false);
+	}
+
+	private boolean isThisButtonEqualTo(ActionEvent ae, JButton btn){
+		return ae.getSource().equals(buttonProfile);
 	}
 }

@@ -319,7 +319,7 @@ public class MyProfileActivity extends JFrame implements ActionListener {
 		else if (ae.getSource().equals(buttonDelete)) {
 			int input = JOptionPane.showConfirmDialog(null, "Sure to Delete?", "Delete "+customer.getUserId()+"?", JOptionPane.YES_NO_OPTION);
 			if (input == 0) {
-				customer.deleteCustomer();
+				customer.delete();
 				this.setVisible(false);
 				new LoginActivity().setVisible(true);
 			}

@@ -92,7 +92,7 @@ public class ViewCustomerActivity extends JFrame implements ActionListener {
 		frame.setBounds(40,185,600,300);
 		panel.add(frame);
 		
-		table.setModel(Customer.searchCustomer("", "By Name"));
+		table.setModel(Customer.search("", "By Name"));
 		
 		header = new JLabel();
 		header.setBackground(Theme.BACKGROUND_HEADER);
@@ -113,7 +113,7 @@ public class ViewCustomerActivity extends JFrame implements ActionListener {
 			activity.setVisible(true);
 		}
 		else if (ae.getSource().equals(buttonCheck)) {
-			table.setModel(Customer.searchCustomer(keywordTF.getText().trim(), byWhatCB.getSelectedItem().toString()));
+			table.setModel(Customer.search(keywordTF.getText().trim(), byWhatCB.getSelectedItem().toString()));
 		}
 		else {}
 	}

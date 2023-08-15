@@ -58,12 +58,8 @@ public class Product {
 		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			rs = st.executeQuery(query);//getting result
+			Database database = Database.getInstance();
+			rs = database.executeQuery(query);//getting result
 			System.out.println("results received");
 			
 			while(rs.next()) {
@@ -98,13 +94,9 @@ public class Product {
 		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			st.execute(query);//insert
-			System.out.println("data inserted");
+
+			Database database = Database.getInstance();
+			database.executeQuery(query);
 			updateProduct(this.productName, this.price, this.quantity-amount);
 		}
         catch(Exception ex) {
@@ -130,13 +122,8 @@ public class Product {
 		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			st.executeUpdate(query);//insert
-			System.out.println("data inserted");
+			Database database = Database.getInstance();
+			database.executeUpdate(query);
 			JOptionPane.showMessageDialog(null,"Done!");
 		}
         catch(Exception ex) {
@@ -162,13 +149,8 @@ public class Product {
 		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			st.execute(query);//insert
-			System.out.println("data inserted");
+			Database database = Database.getInstance();
+			database.executeQuery(query);
 			JOptionPane.showMessageDialog(null,"Product Created!");
 		}
         catch(Exception ex) {
@@ -200,12 +182,8 @@ public class Product {
 		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			rs = st.executeQuery(query);//getting result
+			Database database = Database.getInstance();
+			rs = database.executeQuery(query);//getting result
 			System.out.println("results received");
 			
 			while(rs.next()) {
@@ -238,13 +216,8 @@ public class Product {
 		System.out.println(query1);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			st.execute(query1);//delete
-			System.out.println("data deleted");
+			Database database = Database.getInstance();
+			database.executeQuery(query1);
 			JOptionPane.showMessageDialog(null,"Product Deleted!");
 		}
         catch(Exception ex) {

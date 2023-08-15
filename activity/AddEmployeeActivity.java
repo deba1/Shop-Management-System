@@ -172,9 +172,9 @@ public class AddEmployeeActivity extends JFrame implements ActionListener {
 				salaryTF.setText("");
 				roleCB.setSelectedIndex(0);
 				if (!activity.keywordTF.getText().trim().isEmpty())
-					activity.table.setModel(Employee.searchEmployee(activity.keywordTF.getText().trim(), activity.byWhatCB.getSelectedItem().toString()));
+					activity.table.setModel(Employee.search(activity.keywordTF.getText().trim(), activity.byWhatCB.getSelectedItem().toString()));
 				else
-					activity.table.setModel(Employee.searchEmployee("", "By Name"));
+					activity.table.setModel(Employee.search("", "By Name"));
 			}
 			catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(this,"Enter phone no correctly!"); 

@@ -105,11 +105,11 @@ public class AddProductActivity extends JFrame implements ActionListener {
 			this.setVisible(false);
 			new LoginActivity().setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonBack)) {
+		if (ae.getSource().equals(buttonBack)) {
 			this.setVisible(false);
 			new ViewProductActivity(new EmployeeActivity(employee.getUserId()), employee).setVisible(true);
 		}
-		else if (ae.getSource().equals(buttonAdd)) {
+		if (ae.getSource().equals(buttonAdd)) {
 			try {
 				Product p = new Product();
 				p.setProductName(productNameTF.getText().trim());

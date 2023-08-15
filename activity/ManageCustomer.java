@@ -2,7 +2,6 @@ package activity;
 
 import java.lang.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import attr.*;
 
@@ -95,9 +94,9 @@ public class ManageCustomer extends JFrame implements ActionListener {
 			try {
 				customer.updateCustomer(customerNameTF.getText(),Integer.parseInt(phoneNumberTF.getText()),addressTF.getText().trim());
 				if (!prev.keywordTF.getText().trim().isEmpty())
-					prev.table.setModel(Customer.searchCustomer(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
+					prev.table.setModel(Customer.search(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
 				else
-					prev.table.setModel(Customer.searchCustomer("", "By Name"));
+					prev.table.setModel(Customer.search("", "By Name"));
 				this.setVisible(false);
 			}
 			catch (NumberFormatException e) {
@@ -105,11 +104,11 @@ public class ManageCustomer extends JFrame implements ActionListener {
 			}
 		}
 		else if (ae.getSource().equals(buttonDelete)) {
-			customer.deleteCustomer();
+			customer.delete();
 			if (!prev.keywordTF.getText().trim().isEmpty())
-				prev.table.setModel(Customer.searchCustomer(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
+				prev.table.setModel(Customer.search(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
 			else
-				prev.table.setModel(Customer.searchCustomer("", "By Name"));
+				prev.table.setModel(Customer.search("", "By Name"));
 			this.setVisible(false);
 		}
 		else {}

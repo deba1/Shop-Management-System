@@ -107,9 +107,9 @@ public class ManageEmployee extends JFrame implements ActionListener {
 			try {
 				employee.updateEmployee(employeeNameTF.getText(),Integer.parseInt(phoneNumberTF.getText()),roleCB.getSelectedItem().toString(), Double.parseDouble(salaryTF.getText()));
 				if (!prev.keywordTF.getText().trim().isEmpty())
-					prev.table.setModel(Employee.searchEmployee(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
+					prev.table.setModel(Employee.search(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
 				else
-					prev.table.setModel(Employee.searchEmployee("", "By Name"));
+					prev.table.setModel(Employee.search("", "By Name"));
 				this.setVisible(false);
 			}
 			catch (NumberFormatException e) {
@@ -117,11 +117,11 @@ public class ManageEmployee extends JFrame implements ActionListener {
 			}
 		}
 		else if (ae.getSource().equals(buttonDelete)) {
-			employee.deleteEmployee();
+			employee.delete();
 			if (!prev.keywordTF.getText().trim().isEmpty())
-				prev.table.setModel(Employee.searchEmployee(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
+				prev.table.setModel(Employee.search(prev.keywordTF.getText().trim(), prev.byWhatCB.getSelectedItem().toString()));
 			else
-				prev.table.setModel(Employee.searchEmployee("", "By Name"));
+				prev.table.setModel(Employee.search("", "By Name"));
 			this.setVisible(false);
 		}
 		else {}

@@ -1,12 +1,10 @@
 package attr;
 
 import java.lang.*;
-import java.util.*;
-import java.text.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.sql.*;
-import attr.*;
+
 import activity.*;
 
 public class Customer extends User {
@@ -157,7 +155,7 @@ public class Customer extends User {
             catch(Exception ex) {}
         }
 	}
-	public void deleteCustomer() {
+	public void delete() {
 		String query1 = "DELETE FROM `login` WHERE `userId`='"+this.userId+"';";
 		String query2 = "DELETE FROM `customer` WHERE `userId`='"+this.userId+"';";
 		Connection con = null;
@@ -243,7 +241,7 @@ public class Customer extends User {
 		return model;
 	}
 	
-	public static DefaultTableModel searchCustomer(String keyword, String byWhat) {
+	public static DefaultTableModel search(String keyword, String byWhat) {
 		DefaultTableModel model = new DefaultTableModel();
 		model.setColumnIdentifiers(columnName);
 		String query = "SELECT * FROM `customer` WHERE `userId`='"+keyword+"';";
