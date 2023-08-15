@@ -4,11 +4,14 @@ import java.lang.*;
 import java.sql.*;
 import attr.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import activity.*;
 
 public abstract class User {
 	protected String userId;
 	protected String password;
+	private static final String UPDATE_PASSWORD_QUERY = "UPDATE `login` SET `password`=? WHERE (`userId`=? AND `password`=?)";
 	protected int status;
 	
 	public User(String userId) {
@@ -19,7 +22,13 @@ public abstract class User {
 	}
 	
 	public abstract void fetch();
-	
+
+	public static DefaultTableModel search(String keyword, String byWhat) {
+		return null;
+	}
+
+	public abstract void delete();
+
 	public String getUserId() {
 		return userId;
 	}
@@ -81,18 +90,18 @@ public abstract class User {
 	}
 	
 	public void changePassword(ChangePasswordActivity a, String oldPass, String newPass) {
-		String query = "UPDATE `login` SET `password`='"+newPass+"' WHERE (`userId`='"+this.userId+"' AND `password`='"+oldPass+"');";
 		Connection con = null;
         Statement st = null;
-		System.out.println(query);
         try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("driver loaded");
-			con = DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
-			System.out.println("connection done");//connection with database established
-			st = con.createStatement();//create statement
-			System.out.println("statement created");
-			int res = st.executeUpdate(query);//insert
+			con =  DriverManager.getConnection(Database.HOST_URI, Database.USER, Database.PASSWORD);
+			PreparedStatement ps = con.prepareStatement(UPDATE_PASSWORD_QUERY);
+			ps.setString(1, newPass);
+			ps.setString(2, this.userId);
+			ps.setString(3, oldPass);
+			int res = ps.executeUpdate();//insert
+
 			System.out.println("data inserted");
 			if (res > 0) {
 				JOptionPane.showMessageDialog(null,"Password Updated!");

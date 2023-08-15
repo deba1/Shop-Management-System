@@ -100,7 +100,7 @@ public class ViewEmployeeActivity extends JFrame implements ActionListener {
 		frame.setBounds(40,185,600,300);
 		panel.add(frame);
 		
-		table.setModel(Employee.searchEmployee("", "By Name"));
+		table.setModel(Employee.search("", "By Name"));
 		
 		header = new JLabel();
 		header.setBackground(Theme.BACKGROUND_HEADER);
@@ -125,7 +125,7 @@ public class ViewEmployeeActivity extends JFrame implements ActionListener {
 			new AddEmployeeActivity(this, employee).setVisible(true);
 		}
 		else if (ae.getSource().equals(buttonCheck)) {
-			table.setModel(Employee.searchEmployee(keywordTF.getText().trim(), byWhatCB.getSelectedItem().toString()));
+			table.setModel(Employee.search(keywordTF.getText().trim(), byWhatCB.getSelectedItem().toString()));
 		}
 		else {}
 	}

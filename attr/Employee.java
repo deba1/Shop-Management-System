@@ -159,7 +159,7 @@ public class Employee extends User {
         }
 	}
 	
-	public void deleteEmployee() {
+	public void delete() {
 		String query1 = "DELETE FROM `login` WHERE `userId`='"+this.userId+"';";
 		String query2 = "DELETE FROM `employee` WHERE `userId`='"+this.userId+"';";
 		Connection con = null;
@@ -199,7 +199,7 @@ public class Employee extends User {
         }
 	}
 	
-	public static DefaultTableModel searchEmployee(String keyword, String byWhat) {
+	public static DefaultTableModel search(String keyword, String byWhat) {
 		DefaultTableModel model = new DefaultTableModel();
 		model.setColumnIdentifiers(columnNames);
 		String query = "SELECT * FROM `employee` WHERE `userId`='"+keyword+"';";
